@@ -4,7 +4,7 @@ package main
 import "fmt"
 
 func main() {
-	// Sign function
+	// sign function
 	fmt.Printf("1. Sign function results:\n")
 	printSign(-5)
 	printSign(5)
@@ -14,6 +14,10 @@ func main() {
 	fmt.Printf("\n2. Multiples function results:\n")
 	max := 3000000
 	fmt.Printf("The sum of multiplies of 3 and 5, but not of 15, from 0 to %d is %d\n", max, sumMul3_5_no15(max))
+
+	// multiply function
+	fmt.Printf("\n2. Multiply table function results:\n")
+	multiply(5)
 }
 
 // sign function returns the sign of the argument number. -1 for negatives, 0 for zero, 1 for positives
@@ -45,4 +49,12 @@ func sumMul3_5_no15(max int) int {
 		}
 	}
 	return sum
+}
+
+// multiply prints the multiplication table of a given number
+// Enunciado: Imprime la tabla de multiplicar de cualquier número entregado como argumento
+func multiply(n int) {
+	for i := 0; i <= 10; i++ {
+		fmt.Printf("%d × %d = %d\n", n, i, n*i)
+	}
 }
