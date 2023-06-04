@@ -16,8 +16,14 @@ func main() {
 	fmt.Printf("The sum of multiplies of 3 and 5, but not of 15, from 0 to %d is %d\n", max, sumMul3_5_no15(max))
 
 	// multiply function
-	fmt.Printf("\n2. Multiply table function results:\n")
+	fmt.Printf("\n3. Multiply table function results:\n")
 	multiply(5)
+
+	// sumDigits function
+	fmt.Printf("\n4. sum digits function results:\n")
+	number := 543
+	fmt.Printf("The sum of digits of %d is %d\n", number, sumDigits(number))
+	fmt.Printf("Is %d a multiple of 3 -> %t\n", number, isMultipleOf3(number))
 }
 
 // sign function returns the sign of the argument number. -1 for negatives, 0 for zero, 1 for positives
@@ -57,4 +63,24 @@ func multiply(n int) {
 	for i := 0; i <= 10; i++ {
 		fmt.Printf("%d × %d = %d\n", n, i, n*i)
 	}
+}
+
+// sumDigits sums the digits of a given number until one digit
+// Enunciado: Calcula la suma de los dígitos de una función, y usa esa misma función para determinar si un valor dado es múltiplo de 3, o no.
+func sumDigits(n int) int {
+	/* 	switch {
+	   	case n < 10:
+	   		return n
+	   	default:
+	   		return sumDigits(n%10 + sumDigits(n/10))
+	   	} */
+	if n < 10 {
+		return n
+	}
+	return sumDigits(n%10 + sumDigits(n/10))
+}
+
+// isMultipleOf3 indicates if a number is multiple of 3
+func isMultipleOf3(n int) bool {
+	return sumDigits(n)%3 == 0
 }
