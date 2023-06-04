@@ -32,6 +32,7 @@ func main() {
 	fmt.Printf("\n6. palindrome function results:\n")
 	text := "la ruta nos aporto otro paso natural"
 	fmt.Printf("Is '%s' a palindrome word? -> %t\n", text, palindrome(text))
+	fmt.Printf("Is '%s' a palindrome word (using switch)? -> %t\n", text, palindromeSwitch(text))
 }
 
 // sign function returns the sign of the argument number. -1 for negatives, 0 for zero, 1 for positives
@@ -99,6 +100,21 @@ func palindrome(text string) bool {
 	formattedText := strings.ReplaceAll(text, " ", "")
 	for i := 0; i < len(formattedText); i++ {
 		if formattedText[i] != formattedText[len(formattedText)-1-i] {
+			return false
+		}
+	}
+	return true
+}
+
+// palindrome indicates if a given string is a palindrome
+// Enunciado: Crea una función que determine si un string es un palíndromo. ¿Serías capaz de hacerlo usando switch?
+func palindromeSwitch(text string) bool {
+	formattedText := strings.ReplaceAll(text, " ", "")
+	for i := 0; i < len(formattedText); i++ {
+		switch {
+		case formattedText[i] == formattedText[len(formattedText)-1-i]:
+			continue
+		default:
 			return false
 		}
 	}
