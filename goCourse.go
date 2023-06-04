@@ -11,6 +11,7 @@ func main() {
 }
 
 // sign function returns the sign of the argument number. -1 for negatives, 0 for zero, 1 for positives
+// Enunciado: Crea una función que devuelva el signo de su argumento (-1 si es negativo, +1 si es positivo, y 0 en cualquier otro caso)
 func sign(n int) int {
 	switch {
 	case n == 0:
