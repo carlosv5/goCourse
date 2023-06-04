@@ -3,6 +3,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"strings"
 )
 
@@ -23,13 +24,21 @@ func main() {
 	multiply(5)
 
 	// sumDigits function
-	fmt.Printf("\n4. sum digits function results:\n")
+	fmt.Printf("\n4. Sum digits function results:\n")
 	number := 543
 	fmt.Printf("The sum of digits of %d is %d\n", number, sumDigits(number))
 	fmt.Printf("Is %d a multiple of 3 -> %t\n", number, isMultipleOf3(number))
 
+	// roots function
+	fmt.Printf("\n5. Roots function results:\n")
+	a := 1.0
+	b := -5.0
+	c := 6.0
+	roots := roots(a, b, c)
+	fmt.Printf("The roots of %.1fx²+%.1fx+%.1f are %.1f and %.1f\n", a, b, c, roots[0], roots[1])
+
 	// palindrome function
-	fmt.Printf("\n6. palindrome function results:\n")
+	fmt.Printf("\n6. Palindrome function results:\n")
 	text := "la ruta nos aporto otro paso natural"
 	fmt.Printf("Is '%s' a palindrome word? -> %t\n", text, palindrome(text))
 	fmt.Printf("Is '%s' a palindrome word (using switch)? -> %t\n", text, palindromeSwitch(text))
@@ -92,6 +101,14 @@ func sumDigits(n int) int {
 // isMultipleOf3 indicates if a number is multiple of 3
 func isMultipleOf3(n int) bool {
 	return sumDigits(n)%3 == 0
+}
+
+// roots return the roots of ax²+bx+c
+// Enunciado: Crea una función que reciba tres parámetros a, b y c que son los coeficientes de una ecuación de segundo grado: ax^2 + bx + c = 0, y que imprima por pantalla las raíces o soluciones de la ecuación
+func roots(a, b, c float64) []float64 {
+	x1 := (-b + math.Sqrt(math.Pow(b, 2)-(4*a*c))) / 2 * a
+	x2 := (-b - math.Sqrt(math.Pow(b, 2)-(4*a*c))) / 2 * a
+	return []float64{x1, x2}
 }
 
 // palindrome indicates if a given string is a palindrome
