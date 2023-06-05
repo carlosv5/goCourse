@@ -42,6 +42,33 @@ func main() {
 	text := "la ruta nos aporto otro paso natural"
 	fmt.Printf("Is '%s' a palindrome word? -> %t\n", text, palindrome(text))
 	fmt.Printf("Is '%s' a palindrome word (using switch)? -> %t\n", text, palindromeSwitch(text))
+
+	/* 	// bitmap exercise
+	   	fmt.Printf("\n7. Bitmap exercise results:\n")
+	   	positions := 30
+	   	bitmap := newBitmap(positions)
+	   	fmt.Printf("bitMap with, at least, %d positions is:\n", positions)
+	   	printBitmap(bitmap)
+	   	position := 10
+	   	fmt.Printf("Position %d of the bitmap is %b\n", position, readBit(bitmap, position))
+	   	changePosition := 0
+	   	fmt.Printf("Going to enable position %d. The bitmap is now:\n", changePosition)
+	   	newBitMap := enableBit(bitmap, changePosition)
+	   	printBitmap(newBitMap) */
+
+	/* 	changePosition = 12
+	   	fmt.Printf("Going to enable position %d. The bitmap is now:\n", changePosition)
+	   	newBitMap = enableBit(newBitMap, changePosition)
+	   	printBitmap(newBitMap)
+
+	   	changePosition = 20
+	   	fmt.Printf("Going to enable position %d. The bitmap is now:\n", changePosition)
+	   	newBitMap = enableBit(newBitMap, changePosition)
+	   	printBitmap(newBitMap) */
+
+	/* 	fmt.Printf("Going to enable all the bits. The bitmap is now:\n")
+	   	newBitMap = enableAllBits(newBitMap)
+	   	printBitmap(newBitMap) */
 }
 
 // sign function returns the sign of the argument number. -1 for negatives, 0 for zero, 1 for positives
@@ -108,6 +135,7 @@ func isMultipleOf3(n int) bool {
 func roots(a, b, c float64) []float64 {
 	x1 := (-b + math.Sqrt(math.Pow(b, 2)-(4*a*c))) / 2 * a
 	x2 := (-b - math.Sqrt(math.Pow(b, 2)-(4*a*c))) / 2 * a
+	// math.Cmplx
 	return []float64{x1, x2}
 }
 
@@ -137,3 +165,64 @@ func palindromeSwitch(text string) bool {
 	}
 	return true
 }
+
+/* // newBitmap debe devolver un string lo suficientemente largo para alojar length bits
+func newBitmap(length int) string {
+	neededLength := 0
+	if length%8 > 0 {
+		neededLength = length/8 + 1
+	} else {
+		neededLength = length / 8
+	}
+	var zeroByte byte
+	bitmap := strings.Repeat(string(zeroByte), neededLength)
+	return bitmap
+}
+
+// readBit devuelve el valor del bit en la posición i del bitmap almacenado en el string entregado en primer lugar
+func readBit(bitmap string, i int) byte {
+	despl := 8 - (i % 8) - 1
+	thisByte := (bitmap[i/8] >> despl) & 1
+	return thisByte
+}
+
+// printBitmap imprime por pantalla los contenidos de todos los bits del bitmap entregado como argumento
+func printBitmap(bitmap string) {
+	fmt.Printf("-> Printing bitmap:\n")
+	for i := 0; i < len(bitmap); i++ {
+		subBitMap := string(bitmap[i])
+		for j := 0; j < 8; j++ {
+			fmt.Printf("%b ", readBit(subBitMap, j))
+		}
+		fmt.Printf("\n")
+	}
+}
+
+// enableBit devuelve un bitmap que es una copia del entregado como primer parámetro y que, además, tiene activado el bit i-ésimo
+func enableBit(bitmap string, i int) string {
+	var str string
+	for j := 0; j < len(bitmap); j++ {
+		if j == i/8 {
+			despl := 8 - (i % 8) - 1
+			fmt.Printf("desplazamioento es %d\n", despl)
+			bitToChange := (bitmap[i/8] >> despl)
+			printBitmap(string(bitToChange))
+			bitChanged := bitToChange | 1
+			printBitmap(string(bitChanged))
+			bitRestored := bitChanged << despl
+			printBitmap(string(bitRestored))
+			str = str + string(bitRestored)
+		} else {
+			str = str + string(bitmap[j])
+		}
+	}
+	return str
+}
+
+func enableAllBits(bitmap string) string {
+	var str string
+	for j := 0; j < len(bitmap); j++ {
+		str = str + string(bitmap[j]|127)
+	}
+	return str
+} */
