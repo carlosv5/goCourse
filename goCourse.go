@@ -3,6 +3,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"math"
 	"strings"
 )
@@ -69,6 +70,27 @@ func main() {
 	/* 	fmt.Printf("Going to enable all the bits. The bitmap is now:\n")
 	   	newBitMap = enableAllBits(newBitMap)
 	   	printBitmap(newBitMap) */
+
+	// CSV encoder/decoder
+	fmt.Printf("\n CSV Decoder:\n")
+	if csvfile, err := openCSV("csv/music.csv"); err != nil {
+		log.Fatal(err)
+	} else {
+		scanner := scan(csvfile)
+		for data, err := scanner(); err == nil; data, err = scanner() {
+			for _, field := range data {
+				switch field.(type) { // Análisis del tipo de cada campo
+				case int:
+					fmt.Printf("%d(int)", field)
+				case float64:
+					fmt.Printf("%v(float)", field)
+				case string:
+					fmt.Printf("%v(string)", field)
+				}
+			}
+			fmt.Println()
+		}
+	}
 }
 
 // sign function returns the sign of the argument number. -1 for negatives, 0 for zero, 1 for positives
